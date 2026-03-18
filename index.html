@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - 张明</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2d3436;
+            --secondary: #636e72;
+            --accent: #0984e3;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --border: #e9ecef;
+            --success: #00b894;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header-info h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .header-info .tagline {
+            font-size: 16px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--light);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary);
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--secondary);
+            font-size: 14px;
+            min-width: 80px;
+        }
+
+        .info-value {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-meta {
+            font-size: 13px;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-category h4 {
+            font-size: 14px;
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .achievement-card {
+            text-align: center;
+            padding: 25px 15px;
+            background: var(--light);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .achievement-number {
+            font-size: 32px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .achievement-label {
+            font-size: 13px;
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+
+        .honor-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .honor-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .honor-item:hover {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        }
+
+        .honor-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .honor-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .honor-content span {
+            font-size: 12px;
+            color: var(--secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .contact-item:hover .contact-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-icon {
+            font-size: 24px;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: var(--secondary);
+        }
+
+        .contact-value {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .quote {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .quote p {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--secondary);
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .grid-2, .skills-grid, .achievements, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-info h1 {
+                font-size: 28px;
+            }
+
+            .tags {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="avatar" style="background: var(--gradient); overflow: hidden;">
+                    <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-with-natural-make-up_23-2149175555.jpg" alt="白清" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="header-info">
+                    <h1>白清</h1>
+                    <p class="tagline">北京大学计算机学院 · 2024级 · 大二在读</p>
+                    <div class="tags">
+                        <span class="tag">AI爱好者</span>
+                        <span class="tag">前端开发</span>
+                        <span class="tag">算法学习者</span>
+                        <span class="tag">科技创新</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="quote">
+            <p>"代码改变世界，热爱驱动成长"</p>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">基本信息</h2>
+            <div class="grid-2">
+                <div>
+                    <div class="info-item">
+                        <span class="info-label">学校</span>
+                        <span class="info-value">北京大学计算机学院</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">专业</span>
+                        <span class="info-value">计算机科学与技术</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">年级</span>
+                        <span class="info-value">2024级 · 大二</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="info-item">
+                        <span class="info-label">GPA</span>
+                        <span class="info-value">3.92 / 4.0（专业前3%）</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">英语水平</span>
+                        <span class="info-value">CET-6（610分）</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">政治面貌</span>
+                        <span class="info-value">共青团员</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">数据概览</h2>
+            <div class="achievements">
+                <div class="achievement-card">
+                    <div class="achievement-number">8+</div>
+                    <div class="achievement-label">专业课程</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">3</div>
+                    <div class="achievement-label">竞赛获奖</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">3</div>
+                    <div class="achievement-label">项目经历</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">技能特长</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>编程语言</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Go</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>AI技术</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">深度学习</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">计算机视觉</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>前端开发</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Webpack</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>工具平台</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">兴趣爱好</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>技术相关</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">人工智能</span>
+                        <span class="skill-tag">机器学习</span>
+                        <span class="skill-tag">算法竞赛</span>
+                        <span class="skill-tag">前端开发</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>个人兴趣</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">阅读</span>
+                        <span class="skill-tag">瑜伽</span>
+                        <span class="skill-tag">摄影</span>
+                        <span class="skill-tag">旅行</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>社团活动</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">计算机协会</span>
+                        <span class="skill-tag">AI兴趣小组</span>
+                        <span class="skill-tag">志愿者服务</span>
+                        <span class="skill-tag">编程竞赛队</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>其他特长</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">钢琴十级</span>
+                        <span class="skill-tag">英语口语</span>
+                        <span class="skill-tag">写作</span>
+                        <span class="skill-tag">团队协作</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">项目经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">AI辅助教学系统</div>
+                    <div class="timeline-meta">项目负责人 · 2025.09 - 至今</div>
+                    <div class="timeline-desc">基于深度学习的智能教学辅助系统，使用 PyTorch + Flask 开发，已在学院试点使用，获得师生一致好评</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">校园智能导览系统</div>
+                    <div class="timeline-meta">核心开发 · 2025.03 - 2025.07</div>
+                    <div class="timeline-desc">基于 Vue3 + 高德地图 API 的校园导览系统，支持 AR 导航、景点介绍等功能，获校级科技创新项目一等奖</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">开源贡献 - TensorFlow</div>
+                    <div class="timeline-meta">贡献者 · 2025.01 - 至今</div>
+                    <div class="timeline-desc">参与 TensorFlow 中文文档翻译和示例代码优化，累计提交 PR 8 个，获得社区认可</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">获奖荣誉</h2>
+            <div class="honor-list">
+                <div class="honor-item">
+                    <div class="honor-icon">🏆</div>
+                    <div class="honor-content">
+                        <h4>ACM-ICPC 亚洲区域赛银奖</h4>
+                        <span>2025 · 国际级</span>
+                        <div style="margin-top: 8px;">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ACM-ICPC%20Asia%20Regional%20Contest%20silver%20medal%20certificate%2C%20official%20style%2C%20with%20university%20seal%2C%20Chinese%20text&image_size=landscape_4_3" alt="ACM-ICPC银奖证书" style="width: 100%; max-width: 300px; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <div class="honor-icon">🥇</div>
+                    <div class="honor-content">
+                        <h4>"挑战杯"全国大学生课外学术科技作品竞赛一等奖</h4>
+                        <span>2025 · 国家级</span>
+                        <div style="margin-top: 8px;">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=National%20Challenge%20Cup%20first%20prize%20certificate%2C%20official%20style%2C%20with%20red%20seal%2C%20Chinese%20text&image_size=landscape_4_3" alt="挑战杯一等奖证书" style="width: 100%; max-width: 300px; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <div class="honor-icon">📜</div>
+                    <div class="honor-content">
+                        <h4>国家奖学金</h4>
+                        <span>2025 · 国家级</span>
+                        <div style="margin-top: 8px;">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=National%20Scholarship%20certificate%2C%20official%20style%2C%20with%20golden%20seal%2C%20Chinese%20text&image_size=landscape_4_3" alt="国家奖学金证书" style="width: 100%; max-width: 300px; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <div class="honor-icon">🎖️</div>
+                    <div class="honor-content">
+                        <h4>北京大学三好学生</h4>
+                        <span>2025 · 校级</span>
+                        <div style="margin-top: 8px;">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Peking%20University%20excellent%20student%20certificate%2C%20official%20style%2C%20with%20university%20seal%2C%20Chinese%20text&image_size=landscape_4_3" alt="北京大学三好学生证书" style="width: 100%; max-width: 300px; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">实践经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">字节跳动 · AI 算法实习生</div>
+                    <div class="timeline-meta">2025.07 - 2025.09</div>
+                    <div class="timeline-desc">参与推荐算法优化项目，使用 TensorFlow 实现模型训练，提升推荐准确率 12%</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">北京大学计算机协会 · 技术部副部长</div>
+                    <div class="timeline-meta">2024.09 - 至今</div>
+                    <div class="timeline-desc">负责协会技术活动策划，组织算法讲座 15+ 场，指导新生项目 10+ 个</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">北京大学 AI 实验室 · 研究助理</div>
+                    <div class="timeline-meta">2025.03 - 至今</div>
+                    <div class="timeline-desc">参与自然语言处理研究项目，协助发表论文 2 篇，申请专利 1 项</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">联系方式</h2>
+            <div class="contact-grid">
+                <a href="mailto:baiqing@example.com" class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-label">邮箱</span>
+                    <span class="contact-value">baiqing@example.com</span>
+                </a>
+                <a href="https://github.com/baiqing" class="contact-item" target="_blank">
+                    <span class="contact-icon">💻</span>
+                    <span class="contact-label">GitHub</span>
+                    <span class="contact-value">github.com/baiqing</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span class="contact-label">微信</span>
+                    <span class="contact-value">baiqing_dev</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <span class="contact-icon">📝</span>
+                    <span class="contact-label">博客</span>
+                    <span class="contact-value">blog.baiqing.me</span>
+                </a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 白清 · 用代码书写未来</p>
+        </footer>
+    </div>
+</body>
+</html>
